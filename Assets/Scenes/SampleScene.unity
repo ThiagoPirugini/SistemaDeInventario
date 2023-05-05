@@ -189,15 +189,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 401850231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6507340f9fd77024a949bf4557fa1d89, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c340757671b09c40bfa2e1d9d9e59a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   propriedadesDoInventario:
     Linhas: 6
     Colunas: 6
-    espacamentoY: 30
+    espacamentoY: 20
     tamanhoDoSlot: {x: 32, y: 32}
     bloquearMovimento: 1
+  mouse:
+    Ponteiro: {fileID: 2800000, guid: 9c6313a5316f8a34b852bf94ff96e3ab, type: 3}
+    Escala: {x: 32, y: 32}
+    itemArrastavel:
+      Identidade: 0
+      Nome: 
+      Icone: {fileID: 0}
+      Objeto: {fileID: 0}
+      Empilhavel: 0
+      Quantidade: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
