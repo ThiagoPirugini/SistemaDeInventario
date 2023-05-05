@@ -40,9 +40,17 @@ public class baseInvetario : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetButtonUp("Abrir Inventário"))
+        {
+            _invetarioAberto = !_invetarioAberto;
+        }
+    }
+
     private void OnGUI()
     {
-        GUI.Window(0, _retanguloDoInventario, janelaDoInventario, "Inventário");
+        _retanguloDoInventario = GUI.Window(0, _retanguloDoInventario, janelaDoInventario, "Inventário");
     }
 
     public void janelaDoInventario (int windowID)
@@ -51,11 +59,45 @@ public class baseInvetario : MonoBehaviour
         {
             for (int y = 0; y < propriedadesDoInventario.Linhas; y++)
             {
+                int indice = x + (y * propriedadesDoInventario.Colunas);
                 Rect retanguloDoSlot = new Rect(x * propriedadesDoInventario.tamanhoDoSlot.x, propriedadesDoInventario.espacamentoY + (y * propriedadesDoInventario.tamanhoDoSlot.y),
                     propriedadesDoInventario.tamanhoDoSlot.x,propriedadesDoInventario.tamanhoDoSlot.y);
 
-                GUI.Box(retanguloDoSlot, "slot");
+                Rect retanguloDoSlotNaTela = new Rect(retanguloDoSlot.x + _retanguloDoInventario.x, retanguloDoSlot.y + RetanguloDoInventario.y, retanguloDoSlot.width, retanguloDoSlot.height);
+
+                //GUI.Box(retanguloDoSlot, "");
+                exibirItem(Slots[indice].item, retanguloDoSlot);
+
+                Slots[indice].Retangulo = retanguloDoSlotNaTela;
+                Slots[indice].Identidade = indice;
+                
             }
+        }
+
+        Rect retanguloArrastavel = new Rect(0, 0, RetanguloDoInventario.width, propriedadesDoInventario.espacamentoY);
+        GUI.DragWindow(retanguloArrastavel);
+
+        if(propriedadesDoInventario.bloquearMovimento)
+        {
+            int posicaoX = (int)Mathf.Clamp(RetanguloDoInventario.x, 0, Screen.width - RetanguloDoInventario.width);
+            int posicaoY = (int)Mathf.Clamp(RetanguloDoInventario.y, 0, Screen.height - RetanguloDoInventario.height);
+
+            RetanguloDoInventario = new Rect(posicaoX, posicaoY, RetanguloDoInventario.width, RetanguloDoInventario.height);
+        }
+    }
+
+    public void exibirItem (Item item, Rect retangulo)
+    {
+        if(item != null)
+        {
+            GUI.Box(retangulo, item.Icone);
+            if(item.Empilhavel)
+            {
+                GUI.Label(new Rect(retangulo.xMax - 20, retangulo.yMax - 20, 20, 20), (item.Quantidade).ToString());
+            }
+        }else
+        {
+            GUI.Box(retangulo, "");
         }
     }
     #endregion
