@@ -40,18 +40,9 @@ public class baseInvetario : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(Input.GetButtonUp("Abrir Inventário"))
-        {
-            _invetarioAberto = !_invetarioAberto;
-        }
-    }
 
-    private void OnGUI()
-    {
-        _retanguloDoInventario = GUI.Window(0, _retanguloDoInventario, janelaDoInventario, "Inventário");
-    }
+
+   
 
     public void janelaDoInventario (int windowID)
     {

@@ -197,7 +197,7 @@ MonoBehaviour:
     Colunas: 6
     espacamentoY: 30
     tamanhoDoSlot: {x: 32, y: 32}
-    bloquearMovimento: 0
+    bloquearMovimento: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
